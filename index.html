@@ -1,423 +1,193 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7]> <html class="ie lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="ie lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="ie lt-ie9"> <![endif]-->
+<!--[if gt IE 8]> <html> <![endif]-->
+<!--[if !IE]><!--><html lang="en"><!-- <![endif]-->
 <head>
-    <title>Happy Birthday</title>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Happy Birthday">
-    <meta name="robots" content="index, follow" />
+	<title>Happy Birthday</title>
+	<meta charset="UTF-8" />
+	<meta name="description" content="Happy Birthday">
+	<meta name="robots" content="index, follow" />
+	<link rel="author" href="https://plus.google.com/u/1/+SaptheshV/" /> 
     <meta name="keywords" content="Birthday, Happy">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
-    <style>
-        body {
-            background-color: #1a1a2e;
-            color: #fff;
-            font-family: 'Signika', sans-serif;
-            overflow-x: hidden;
-            text-align: center;
-            padding-bottom: 100px;
-        }
-        
-        .message-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-        }
-        
-        .message-line {
-            font-size: 1.5rem;
-            margin: 25px 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease, transform 1s ease;
-            line-height: 1.6;
-        }
-        
-        .message-line.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .message-line strong {
-            color: #ffd166;
-        }
-        
-        .controls {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            z-index: 100;
-        }
-        
-        .btn-primary {
-            background-color: #e94560;
-            border-color: #e94560;
-            margin: 5px;
-        }
-        
-        .btn-primary:hover {
-            background-color: #ff6b81;
-            border-color: #ff6b81;
-        }
-        
-        .timing-controls {
-            margin-top: 10px;
-        }
-        
-        .timing-label {
-            color: #fff;
-            margin-right: 10px;
-        }
-        
-        .timing-slider {
-            width: 200px;
-            display: inline-block;
-            margin: 0 10px;
-        }
-        
-        .timing-value {
-            color: #ffd166;
-            font-weight: bold;
-            display: inline-block;
-            min-width: 40px;
-        }
-        
-        .progress-container {
-            width: 100%;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.2);
-            margin: 20px 0;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background: #e94560;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-        
-        h1 {
-            color: #ffd166;
-            margin-bottom: 30px;
-            font-size: 2.5rem;
-        }
-        
-        .cake {
-            width: 200px;
-            height: 120px;
-            margin: 30px auto;
-            position: relative;
-        }
-        
-        .cake:after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
-            border-radius: 10px 10px 0 0;
-            z-index: 1;
-        }
-        
-        .candle {
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 10px;
-            height: 40px;
-            background: #fff;
-            border-radius: 5px 5px 0 0;
-            z-index: 2;
-        }
-        
-        .flame {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 15px;
-            height: 20px;
-            background: #ffd166;
-            border-radius: 50% 50% 20% 20%;
-            animation: flicker 1.5s infinite alternate;
-            box-shadow: 0 0 10px #ff9a00, 0 0 20px #ff9a00;
-            z-index: 3;
-        }
-        
-        @keyframes flicker {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.1); }
-        }
-        
-        .balloons {
-            position: absolute;
-            width: 60px;
-            height: 70px;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: float 15s infinite ease-in-out;
-            z-index: 0;
-        }
-        
-        .balloons:before {
-            content: "";
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 15px;
-            background: rgba(255, 255, 255, 0.5);
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-        
-        #b1 { 
-            top: 10%; 
-            left: 10%; 
-            background: #ff6b6b; 
-            animation-delay: 0s; 
-        }
-        #b2 { 
-            top: 20%; 
-            right: 15%; 
-            background: #4ecdc4; 
-            animation-delay: 1s; 
-        }
-        #b3 { 
-            top: 15%; 
-            left: 20%; 
-            background: #ffd166; 
-            animation-delay: 2s; 
-        }
-        #b4 { 
-            top: 25%; 
-            right: 25%; 
-            background: #6a0572; 
-            animation-delay: 3s; 
-        }
-        #b5 { 
-            top: 30%; 
-            left: 15%; 
-            background: #118ab2; 
-            animation-delay: 4s; 
-        }
-        
-        .message-controls {
-            margin-top: 20px;
-        }
-    </style>
+    <!-- Strat of Facebook Meta -->
+    <meta property="og:type" content="E-Greeting" />
+    <meta property="og:image" content="favicon.ico" />
+    <meta property="og:description" content="Wish you a very Happy Birthday">
+    <!-- End of Facebook Meta Tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<link rel="stylesheet" type="text/css" href="loading.css">
+	<link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'> -->
+	<link rel="stylesheet/less" href="cake.less">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.1.0/less.min.js"></script>
 </head>
 
 <body>
-    <div class="balloons" id="b1"></div>
-    <div class="balloons" id="b2"></div>
-    <div class="balloons" id="b3"></div>
-    <div class="balloons" id="b4"></div>
-    <div class="balloons" id="b5"></div>
-    
-    <div class="message-container">
-        <h1>Happy Birthday Pranju! 🎉</h1>
-        
-        <div class="cake">
-            <div class="candle">
-                <div class="flame"></div>
-            </div>
-        </div>
-        
-        <div class="progress-container">
-            <div class="progress-bar" id="message-progress"></div>
-        </div>
-        
-        <div class="message" id="birthday-message">
-            <p class="message-line">Today is...</p>
-            <p class="message-line">as beautiful as other days</p>
-            <p class="message-line">but you realize</p>
-            <p class="message-line">another year has gone</p>
-            <p class="message-line">in a blink of the eyes</p>
-            <p class="message-line"><strong>however</strong></p>
-            <p class="message-line">Do you know..?</p>
-            <p class="message-line">This day is special to me</p>
-            <p class="message-line">because it gave me my favorite "🎃"</p>
-            <p class="message-line">that's why</p>
-            <p class="message-line">Let's make it...</p>
-            <p class="message-line">the best celebration ever</p>
-            <p class="message-line">(even better than finding a last-minute cherry blossom)</p>
-            <p class="message-line">and let me share...</p>
-            <p class="message-line">a piece of my happiness with you</p>
-            <p class="message-line">I made all this...</p>
-            <p class="message-line">as a birthday present for you</p>
-            <p class="message-line">thanks for every single conversation</p>
-            <p class="message-line">from deep talks about stability to you roasting my English 😉</p>
-            <p class="message-line">Thanks for making me a better man, just by being you.</p>
-            <p class="message-line">I wish you all the best</p>
-            <p class="message-line">May your life be filled with the <strong>stability</strong> you deserve</p>
-            <p class="message-line">and may all your wishes come true</p>
-            <p class="message-line">(...except maybe the one where you never have to give me a 50 rs treat 😋)</p>
-            <p class="message-line">Remember</p>
-            <p class="message-line">your fire, your strength</p>
-            <p class="message-line">you live as a free bird...</p>
-            <p class="message-line">flying in the blue sky, on your own terms</p>
-            <p class="message-line">Now things are different...</p>
-            <p class="message-line">the real story of your life</p>
-            <p class="message-line">is just about to begin</p>
-            <p class="message-line">indeed..</p>
-            <p class="message-line">but...</p>
-            <p class="message-line">don't worry</p>
-            <p class="message-line">because...</p>
-            <p class="message-line">You have a will of steel</p>
-            <p class="message-line">and you also have me, ready with a bad joke when you need one</p>
-            <p class="message-line">and</p>
-            <p class="message-line">this year will be better</p>
-            <p class="message-line">and I hope</p>
-            <p class="message-line">you'll find...</p>
-            <p class="message-line">happiness in the chaos, peace in the quiet, and someone who will always hold your hand through it all.</p>
-            <p class="message-line">Keep your spirit up, my fierce friend</p>
-            <p class="message-line">enjoy every single moment...</p>
-            <p class="message-line">that you experience today</p>
-            <p class="message-line">fill it with your most beautiful smile</p>
-            <p class="message-line">(you know, the one that could power a small city)</p>
-            <p class="message-line">and make it the best memory..</p>
-            <p class="message-line">lastly...</p>
-            <p class="message-line">I'd like to wish you one more time</p>
-            <p class="message-line">a very happy birthday <strong>Pranju</strong></p>
-            <p class="message-line">From the guy who's still trying to be worth it. ❤</p>
-        </div>
-        
-        <div class="message-controls">
-            <button class="btn btn-primary" id="start-message">Start Message</button>
-            <button class="btn btn-primary" id="pause-message">Pause</button>
-            <button class="btn btn-primary" id="reset-message">Reset</button>
-        </div>
-        
-        <div class="timing-controls">
-            <span class="timing-label">Message Speed:</span>
-            <input type="range" min="1" max="10" value="3" class="timing-slider" id="message-speed">
-            <span class="timing-value" id="speed-value">3s</span>
-        </div>
+	<div class="loading"></div>
+	<audio class="song" controls loop>
+        <source src="hbd.mp3"></source>
+	   Your browser isn't invited for super fun audio time.
+    </audio>
+    <div class="balloons text-center" id="b1">
+    	<h2 style="color:#F2B300;">H</h2>
     </div>
-    
-    <div class="controls">
-        <div class="text-center">
-            <button class="btn btn-primary" id="turn_on">Turn On Lights</button>
-            <button class="btn btn-primary" id="play">Play Music</button>
-            <button class="btn btn-primary" id="balloons_flying">Fly With Balloons</button>
-            <button class="btn btn-primary" id="cake_fadein">Delicious Cake</button>
-            <button class="btn btn-primary" id="light_candle">Light Candle</button>
-            <button class="btn btn-primary" id="wish_message">Happy Birthday</button>
-        </div>
+    <div class="balloons text-center" id="b2">
+    	<h2 style="color:#0719D4;">B</h2>
+    </div>
+	<div class="balloons text-center" id="b3">
+    	<h2 style="color:#D14D39;">D</h2>
+    </div>
+	<div class="balloons text-center" id="b4">
+    	<h2 style="color:#8FAD00;">X</h2>
+    </div>
+	<div class="balloons text-center" id="b5">
+    	<h2 style="color:#8377E4;">O</h2>
+    </div>
+    <div class="balloons text-center" id="b6">
+    	<h2 style="color:#99C96A;">L</h2>
+    </div>
+    <div class="balloons text-center" id="b7">
+    	<h2 style="color:#20CFB4;">A</h2>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Set initial timing value
-            let messageSpeed = 3000; // 3 seconds
-            let messageInterval;
-            let currentLine = 0;
-            let isPlaying = false;
-            const messageLines = $('.message-line');
-            const totalLines = messageLines.length;
-            
-            // Update speed display
-            $('#message-speed').on('input', function() {
-                messageSpeed = $(this).val() * 1000;
-                $('#speed-value').text($(this).val() + 's');
-                
-                // If currently playing, restart with new speed
-                if (isPlaying) {
-                    clearInterval(messageInterval);
-                    startMessage();
-                }
-            });
-            
-            // Start message function
-            function startMessage() {
-                isPlaying = true;
-                messageInterval = setInterval(function() {
-                    if (currentLine < totalLines) {
-                        // Hide all lines
-                        messageLines.removeClass('active');
-                        
-                        // Show current line
-                        $(messageLines[currentLine]).addClass('active');
-                        
-                        // Update progress bar
-                        const progress = ((currentLine + 1) / totalLines) * 100;
-                        $('#message-progress').css('width', progress + '%');
-                        
-                        currentLine++;
-                    } else {
-                        // Message complete
-                        clearInterval(messageInterval);
-                        isPlaying = false;
-                    }
-                }, messageSpeed);
-            }
-            
-            // Start button
-            $('#start-message').click(function() {
-                if (!isPlaying) {
-                    startMessage();
-                }
-            });
-            
-            // Pause button
-            $('#pause-message').click(function() {
-                if (isPlaying) {
-                    clearInterval(messageInterval);
-                    isPlaying = false;
-                }
-            });
-            
-            // Reset button
-            $('#reset-message').click(function() {
-                clearInterval(messageInterval);
-                isPlaying = false;
-                currentLine = 0;
-                messageLines.removeClass('active');
-                $('#message-progress').css('width', '0%');
-            });
-            
-            // Other effect buttons (placeholder functionality)
-            $('#turn_on').click(function() {
-                alert("Lights turned on!");
-            });
-            
-            $('#play').click(function() {
-                alert("Music playing!");
-            });
-            
-            $('#balloons_flying').click(function() {
-                $('.balloons').toggle();
-            });
-            
-            $('#cake_fadein').click(function() {
-                $('.cake').fadeToggle();
-            });
-            
-            $('#light_candle').click(function() {
-                $('.flame').toggle();
-            });
-            
-            $('#wish_message').click(function() {
-                alert("Happy Birthday Pranju! 🎂");
-            });
-        });
-    </script>
+    <img src="Balloon-Border.png" width="100%" class="balloon-border">
+ 
+
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-md-2 col-xs-2 bulb-holder">
+				<div class="bulb" id="bulb_yellow"></div>
+			</div>
+			<div class="col-md-2 col-xs-2 bulb-holder">
+				<div class="bulb" id="bulb_red"></div>
+			</div>
+			<div class="col-md-2 col-xs-2 bulb-holder">
+				<div class="bulb" id="bulb_blue"></div>
+			</div>
+			<div class="col-md-2 col-xs-2 bulb-holder">
+				<div class="bulb" id="bulb_green"></div>
+			</div>
+			<div class="col-md-2 col-xs-2 bulb-holder">
+				<div class="bulb" id="bulb_pink"></div>
+			</div>
+			<div class="col-md-2 col-xs-2 bulb-holder">
+				<div class="bulb" id="bulb_orange"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<img src="banner.png" class="bannar">
+			</div>
+		</div>
+		<div class="row cake-cover">
+			<div class="col-md-12 texr-center">
+				<div class="cake">
+				  <div class="velas">
+				    <div class="fuego"></div>
+				    <div class="fuego"></div>
+				    <div class="fuego"></div>
+				    <div class="fuego"></div>
+				    <div class="fuego"></div>
+				  </div>
+				  <div class="cobertura"></div>
+				  <div class="bizcocho"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row message">
+			<div class="col-md-12">
+				<p>Today is...</p>
+				<p>as beautiful as other days</p>
+				<p>but you realize</p>
+				<p>another year has gone</p>
+				<p>in a blink of the eyes</p>
+				<p><strong>however</strong></p>
+				<p>Do you know..?</p>
+				<p>This day is special to me</p>
+				<p>because it gave me my favorite "🎃"</p>
+				<p>that's why</p>
+				<p>Let's make it...</p>
+				<p>the best celebration ever</p>
+				<p>(even better than finding a last-minute cherry blossom)</p>
+				<p>and let me share...</p>
+				<p>a piece of my happiness with you</p>
+				<p>I made all this...</p>
+				<p>as a birthday present for you</p>
+				<p>thanks for every single conversation</p>
+				<p>from deep talks about stability to you roasting my English 😉</p>
+				<p>Thanks for making me a better man, just by being you.</p>
+				<p>I wish you all the best</p>
+				<p>May your life be filled with the <strong>stability</strong> you deserve</p>
+				<p>and may all your wishes come true</p>
+				<p>(...except maybe the one where you never have to give me a 50 rs treat 😋)</p>
+				<p>Remember</p>
+				<p>your fire, your strength</p>
+				<p>you live as a free bird...</p>
+				<p>flying in the blue sky, on your own terms</p>
+				<p>Now things are different...</p>
+				<p>the real story of your life</p>
+				<p>is just about to begin</p>
+				<p>indeed..</p>
+				<p>but...</p>
+				<p>don't worry</p>
+				<p>because...</p>
+				<p>You have a will of steel</p>
+				<p>and you also have me, ready with a bad joke when you need one</p>
+				<p>and</p>
+				<p>this year will be better</p>
+				<p>and I hope</p>
+				<p>you'll find...</p>
+				<p>happiness in the chaos, peace in the quiet, and someone who will always hold your hand through it all.</p>
+				<p>Keep your spirit up, my fierce friend</p>
+				<p>enjoy every single moment...</p>
+				<p>that you experience today</p>
+				<p>fill it with your most beautiful smile</p>
+				<p>(you know, the one that could power a small city)</p>
+				<p>and make it the best memory..</p>
+				<p>lastly...</p>
+				<p>I'd like to wish you one more time</p>
+				<p>a very happy birthday <strong>Pranju</strong></p>
+				<p>From the guy who's still trying to be worth it. ❤</p>
+			</div>
+		</div>
+		<div class="navbar navbar-fixed-bottom">
+			<div class="row">
+				<div class="col-md-6 text-center col-md-offset-3">
+					<button class="btn btn-primary" id="turn_on">Turn On Lights</button>
+					<button class="btn btn-primary" id="play">Play Music</button>
+					<button class="btn btn-primary" id="bannar_coming">Let's Decorate</button>
+					<button class="btn btn-primary" id="balloons_flying">Fly With Balloons</button>
+					<button class="btn btn-primary" id="cake_fadein">Most Delicious Cake Ever</button>
+					<button class="btn btn-primary" id="light_candle"> Light Candle</button>
+					<button class="btn btn-primary" id="wish_message">Happy Birthday</button>
+					<button class="btn btn-primary" id="story">A mesage for you</button>
+					<!-- <button class="btn btn-primary" id="cake_cut">Lrt's Cut the Cake</button> -->
+				</div>
+			</div>
+			<!-- <div class="col-md-2">
+			</div>
+			<div class="col-md-2">
+			</div>
+			<div class="col-md-2">
+			</div>
+			<div class="col-md-2">
+			</div>
+			<div class="col-md-2">
+			</div> -->
+		</div>
+
+
+	</div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="effect.js"></script>
 </html>
